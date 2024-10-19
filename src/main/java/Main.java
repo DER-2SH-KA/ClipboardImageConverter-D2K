@@ -1,4 +1,4 @@
-import java.awt.Toolkit;
+/*import java.awt.Toolkit;
 import java.awt.AWTException;
 import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.Transferable;
@@ -11,18 +11,25 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import java.lang.Exception;
-import java.util.Scanner;
+import java.util.Scanner;*/
+
+import javafx.application.Application;
+import javafx.stage.Stage;
+import javafx.scene.Scene;
+import javafx.scene.control.Label;
 
 
-public class Main 
+public class Main extends Application
 {
-	static Scanner in = new Scanner(System.in);
+	//static Scanner in = new Scanner(System.in);
+	private String TITLE = "Data Transfer";
 
 	public static void main(String[] args) 
 	{
 		System.out.println("Hello World!");
+		Main.launch();
 
-		Integer message;
+		/*Integer message;
 		try {
 			System.out.println("Please enter number of function");
 			System.out.println("* 1 - String from Clipboard *");
@@ -52,9 +59,24 @@ public class Main
 		}
 		finally {
 			in.close();
-		}
+		}*/
 	}
 
+	@Override
+	public void start(Stage primaryStage) throws Exception
+	{
+		primaryStage.setHeight(640);
+		primaryStage.setWidth(960);
+		primaryStage.setTitle(TITLE);
+
+		Label lbl = new Label("Hello World!");
+		Scene scene = new Scene(lbl);
+
+		primaryStage.setScene(scene);
+		primaryStage.show();
+	}
+
+	/*
 	private static void startTakeStringInfo(Clipboard clipboard) 
 	{
 		String result = "";
@@ -90,5 +112,5 @@ public class Main
 		catch (Exception ex) {
 			ex.printStackTrace();
 		}
-	}
+	}*/
 }

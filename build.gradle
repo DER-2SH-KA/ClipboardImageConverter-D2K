@@ -4,10 +4,14 @@
  * This is a general purpose Gradle build.
  * To learn more about Gradle by exploring our Samples at https://docs.gradle.org/8.5/samples
  */
-
 plugins {
     id 'java'
     id 'application'
+    id 'org.openjfx.javafxplugin' version '0.0.13'
+}
+
+ext {
+    javafxVersion = '17'
 }
 
 compileJava {
@@ -16,7 +20,7 @@ compileJava {
 }
 
 application {
-    mainClassName = 'Main'
+    mainClassName = 'Launcher'
 }
 
 sourceSets {
@@ -29,18 +33,27 @@ repositories {
     mavenCentral()
 }
 
+dependencies {
+    implementation 'org.openjfx:javafx-controls:${javafxVersion}'
+}
+
+javafx {
+    version = javafxVersion
+    modules = ['javafx.controls']
+}
+
 tasks.withType(Jar) {
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 }
 
 jar {
     manifest {
-        attributes 'Main-Class': 'Main'
+        attributes 'Main-Class': 'Launcher'
     }
 
     from {
         configurations.runtimeClasspath.collect {
-            it.idDirectory() ? it : zipTree(it)
+            it.isDirectory() ? it : zipTree(it)
         }
     }
 }
